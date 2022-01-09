@@ -1,0 +1,2 @@
+module FoodConsumptionEventsHelper
+end

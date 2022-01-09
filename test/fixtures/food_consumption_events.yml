@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  food: one
+  grams: 1.5
+
+two:
+  user: two
+  food: two
+  grams: 1.5

@@ -1,0 +1,22 @@
+<div id="<%= dom_id food_consumption_event %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= food_consumption_event.user_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Food:</strong>
+    <%= food_consumption_event.food_id %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Grams:</strong>
+    <%= food_consumption_event.grams %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this food consumption event", food_consumption_event, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this food consumption event', edit_food_consumption_event_path(food_consumption_event), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

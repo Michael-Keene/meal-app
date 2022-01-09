@@ -1,0 +1,7 @@
+<div id="<%= dom_id shopping_list %>">
+  <% if action_name != "show" %>
+    <%= link_to "Show this shopping list", shopping_list, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this shopping list', edit_shopping_list_path(shopping_list), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

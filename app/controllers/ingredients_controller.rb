@@ -25,12 +25,29 @@ class IngredientsController < ApplicationController
     if existing_ingredient_for_food(food)
       @ingredient = existing_ingredient_for_food(food)
       @ingredient.grams += ingredient_params[:grams].to_f
+      broadcast = -> { @ingredient
+                         .broadcast_replace_to(
+                           :ingredient_rows,
+                           target: @ingredient,
+                           partial: "ingredients/ingredient_row",
+                           locals: {ingredient: @ingredient}
+                         )
+      }
     else
      @ingredient = @meal.ingredients.new(ingredient_params)
+     broadcast = -> { @ingredient
+                        .broadcast_append_to(
+                          :ingredient_rows,
+                          target: :ingredient_rows,
+                          partial: "ingredients/ingredient_row",
+                          locals: {ingredient: @ingredient}
+                        )
+     }
     end
 
     respond_to do |format|
       if @ingredient.save
+        broadcast.call
         format.turbo_stream {
           render turbo_stream: turbo_stream.update(
                    "new_ingredient",

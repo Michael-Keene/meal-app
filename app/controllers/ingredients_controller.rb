@@ -70,7 +70,7 @@ class IngredientsController < ApplicationController
   def update
     respond_to do |format|
       if @ingredient.update(ingredient_params)
-        format.html { redirect_to meal_ingredient_url(@ingredient), notice: "Ingredient was successfully updated." }
+        format.html { redirect_to meal_url(@meal), notice: "Ingredient was successfully updated." }
         format.json { render :show, status: :ok, location: @ingredient }
       else
         format.html { render :edit, status: :unprocessable_entity }

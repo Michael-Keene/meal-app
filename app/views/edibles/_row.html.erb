@@ -1,35 +1,35 @@
-<% present(ingredient) do |present_ingredient| %>
-  <tr id=<%= dom_id(ingredient) %>>
+<% present(edible) do |present_edible| %>
+  <tr id=<%= dom_id(edible) %>>
     <td class="px-7">
-      <%= present_ingredient.name %>
+      <%= present_edible.name %>
     </td>
 
     <td class="px-7">
-      <%= present_ingredient.grams %>
+      <%= present_edible.grams %>
     </td>
 
     <td class="px-7">
-      <%= present_ingredient.fat %>
+      <%= present_edible.fat %>
     </td>
 
     <td class="px-7">
-      <%= present_ingredient.carbs %>
+      <%= present_edible.carbs %>
     </td>
 
     <td class="px-7">
-      <%= present_ingredient.fibre %>
+      <%= present_edible.fibre %>
     </td>
 
     <td class="px-7">
-      <%= present_ingredient.protein %>
+      <%= present_edible.protein %>
     </td>
 
     <td class="px-7">
-      <%= present_ingredient.calories %>
+      <%= present_edible.calories %>
     </td>
 
     <td>
-      <%= link_to 'Edit', present_ingredient.edit_path, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+      <%= link_to 'Edit', present_edible.edit_path, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     </td>
   </tr>
 <% end %>

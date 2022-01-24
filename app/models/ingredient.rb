@@ -4,4 +4,6 @@ class Ingredient < ApplicationRecord
   belongs_to :food
 
   has_one :macros, class_name: "IngredientMacros"
+
+  scope :with_food, ->(food) { where(food: food) }
 end

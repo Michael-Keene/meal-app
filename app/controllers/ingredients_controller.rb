@@ -32,15 +32,13 @@ class IngredientsController < ApplicationController
     respond_to do |format|
       if @ingredient.save
         format.turbo_stream {
-          {
-            turbo_stream: turbo_stream.update(
-              "new_ingredient",
-              partial: "ingredients/form",
-              locals: {
-                ingredient: @meal.ingredients.new,
-                notice: "Ingredient was successfully created."}
-            )
-          }
+          render turbo_stream: turbo_stream.update(
+                   "new_ingredient",
+                   partial: "ingredients/form",
+                   locals: {
+                     ingredient: @meal.ingredients.new,
+                     notice: "Ingredient was successfully created."}
+                 )
         }
         format.html { redirect_to meal_ingredient_url(@ingredient), notice: "Ingredient was successfully created." }
         format.json { render :show, status: :created, location: @ingredient }

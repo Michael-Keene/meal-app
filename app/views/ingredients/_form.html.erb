@@ -12,9 +12,11 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.select :food_id, options_from_collection_for_select(Food.all, :id, :name) %>
-  </div>
+  <% if ingredient.new_record? %>
+    <div class="my-5">
+      <%= form.select :food_id, options_from_collection_for_select(Food.all, :id, :name, ingredient.food_id) %>
+    </div>
+  <% end %>
 
   <div class="my-5">
     <%= form.label :grams %>

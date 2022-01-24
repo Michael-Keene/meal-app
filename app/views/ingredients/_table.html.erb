@@ -34,7 +34,4 @@
         <%= render partial: "ingredients/ingredient_row", locals: {ingredient: ingredient} %>
       <% end %>
     <% end %>
-    <%= turbo_frame_tag "new_ingredient" do %>
-      <%= render "ingredients/form", ingredient: @meal.ingredients.new %>
-    <% end %>
   </tbody>

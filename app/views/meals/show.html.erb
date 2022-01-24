@@ -15,4 +15,7 @@
 </div>
 <div class="mx-auto">
 <%= render partial: "ingredients/table", locals: {edibles: @meal.ingredients} %>
+<%= turbo_frame_tag "new_ingredient" do %>
+  <%= render "ingredients/form", ingredient: @meal.ingredients.new %>
+<% end %>
 </div>

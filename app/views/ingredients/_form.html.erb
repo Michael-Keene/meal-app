@@ -14,8 +14,7 @@
   <%= hidden_field_tag :meal_id, @meal.id %>
 
   <div class="my-5">
-    <%= form.label :food_id %>
-    <%= form.text_field :food_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.select :food_id, options_from_collection_for_select(Food.all, :id, :name) %>
   </div>
 
   <div class="my-5">

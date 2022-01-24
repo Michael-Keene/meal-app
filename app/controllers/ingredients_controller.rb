@@ -1,5 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: %i[ show edit update destroy ]
+  before_action :set_meal
 
   # GET /ingredients or /ingredients.json
   def index
@@ -21,10 +22,26 @@ class IngredientsController < ApplicationController
 
   # POST /ingredients or /ingredients.json
   def create
-    @ingredient = Ingredient.new(ingredient_params)
+    if existing_ingredient_for_food(food)
+      @ingredient = existing_ingredient_for_food(food)
+      @ingredient.grams += ingredient_params[:grams].to_f
+    else
+     @ingredient = @meal.ingredients.new(ingredient_params)
+    end
 
     respond_to do |format|
       if @ingredient.save
+        format.turbo_stream {
+          {
+            turbo_stream: turbo_stream.update(
+              "new_ingredient",
+              partial: "ingredients/form",
+              locals: {
+                ingredient: @meal.ingredients.new,
+                notice: "Ingredient was successfully created."}
+            )
+          }
+        }
         format.html { redirect_to meal_ingredient_url(@ingredient), notice: "Ingredient was successfully created." }
         format.json { render :show, status: :created, location: @ingredient }
       else
@@ -58,17 +75,25 @@ class IngredientsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ingredient
-      @ingredient = Ingredient.find(params[:id])
-    end
 
-    def set_meal
-      @meal = Meal.find(params[:meal_id])
-    end
+  def existing_ingredient_for_food(food)
+    @meal.ingredients.with_food(food).last
+  end
 
-    # Only allow a list of trusted parameters through.
-    def ingredient_params
-      params.require(:ingredient).permit(:meal_id, :food_id, :grams)
-    end
+  def food
+   @food ||= Food.find(ingredient_params[:food_id])
+  end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ingredient
+    @ingredient = Ingredient.find(params[:id])
+  end
+
+  def set_meal
+    @meal = Meal.find(params[:meal_id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def ingredient_params
+    params.require(:ingredient).permit(:food_id, :grams)
+  end
 end

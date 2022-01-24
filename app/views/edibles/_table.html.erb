@@ -27,10 +27,10 @@
       </th>
     </tr>
   </thead>
-  <tbody class="bg-white divide-y divide-gray-200" id="ingredient_rows">
-    <%= turbo_stream_from :ingredient_rows %>
-    <% edibles.each do |ingredient|%>
-      <%= render partial: "ingredients/ingredient_row", locals: {ingredient: ingredient} %>
+  <tbody class="bg-white divide-y divide-gray-200" id="edible_rows">
+    <%= turbo_stream_from turbo_stream_to_subscribe_to %>
+    <% edibles.each do |edible|%>
+      <%= render partial: "edibles/row", locals: {edible: edible} %>
     <% end %>
   </tbody>
 </table>

@@ -29,8 +29,8 @@ class IngredientsController < ApplicationController
                          .broadcast_replace_to(
                            :ingredient_rows,
                            target: @ingredient,
-                           partial: "ingredients/ingredient_row",
-                           locals: {ingredient: @ingredient}
+                           partial: "edibles/row",
+                           locals: {edible: @ingredient}
                          )
       }
     else
@@ -38,9 +38,9 @@ class IngredientsController < ApplicationController
      broadcast = -> { @ingredient
                         .broadcast_append_to(
                           :ingredient_rows,
-                          target: :ingredient_rows,
-                          partial: "ingredients/ingredient_row",
-                          locals: {ingredient: @ingredient}
+                          target: :edible_rows,
+                          partial: "edibles/row",
+                          locals: {edible: @ingredient}
                         )
      }
     end

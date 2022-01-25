@@ -1,0 +1,10 @@
+<div class="mx-auto">
+  <%= render partial: "edibles/table", locals: {
+         edibles: @meal.ingredients,
+         turbo_stream_to_subscribe_to: :ingredient_rows
+       }
+  %>
+<%= turbo_frame_tag "new_ingredient" do %>
+  <%= render "ingredients/form", ingredient: @meal.ingredients.new %>
+<% end %>
+</div>

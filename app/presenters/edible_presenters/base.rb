@@ -7,7 +7,7 @@ module EdiblePresenters
 
     [:fat, :fibre, :carbs, :protein, :calories].each do |macro|
       define_method(macro) do
-        stats_for_macro(macro)
+        stats_for_macro(macro).round(2)
       end
     end
 

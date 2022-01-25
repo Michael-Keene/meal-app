@@ -9,6 +9,8 @@
     <%= meal.recipe %>
   </p>
 
+  <%= render "macros", meal: meal %>
+
   <% if action_name != "show" %>
     <%= link_to "Show this meal", meal, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit this meal', edit_meal_path(meal), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>

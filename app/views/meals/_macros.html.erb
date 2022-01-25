@@ -1,0 +1,42 @@
+<table class="min-w-full table-auto divide-y divide-gray-200">
+  <thead class="bg-gray-50">
+    <tr>
+      <th scope="col" class="w-1/5">
+        <p class="ml-2 text-left">Fat</p>
+      </th>
+      <th scope="col" class="w-1/5">
+        <p class="ml-2 text-left">Carbs</p>
+      </th>
+      <th scope="col" class="w-1/5">
+        <p class="ml-2 text-left">Protein</p>
+      </th>
+      <th scope="col" class="w-1/5">
+        <p class="ml-2 text-left">Fibre</p>
+      </th>
+      <th scope="col" class="w-1/5">
+        <p class="ml-2 text-left">Calories</p>
+      </th>
+    </tr>
+  </thead>
+  <% present(meal) do |present_meal| %>
+  <tbody>
+    <tr>
+      <td>
+        <p class="ml-2 text-left"><%= present_meal.fat %></p>
+      </td>
+      <td>
+        <p class="ml-2 text-left"><%= present_meal.carbs %></p>
+      </td>
+      <td>
+        <p class="ml-2 text-left"><%= present_meal.protein %></p>
+      </td>
+      <td>
+        <p class="ml-2 text-left"><%= present_meal.fibre %></p>
+      </td>
+      <td>
+        <p class="ml-2 text-left"><%= present_meal.calories %></p>
+      </td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>

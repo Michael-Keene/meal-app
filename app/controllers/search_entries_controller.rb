@@ -2,14 +2,12 @@ class SearchEntriesController < ApplicationController
 
   def index
     query = SearchQuery.new(search_query)
-    if query.valid?
-      @results = SearchEntry.all
+    return head :bad_request unless query.valid?
 
-      query.search_terms.each do |term|
-        apply_search_term(term)
-      end
-    else
-      return head :bad_request unless query.valid?
+    @results = SearchEntry.all
+
+    query.search_terms.each do |term|
+      apply_search_term(term)
     end
   end
 

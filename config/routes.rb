@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'search_entries/index'
+  post 'search_entries/index'
   resources :shopping_lists
   resources :food_consumption_events
   resources :meal_consumption_events

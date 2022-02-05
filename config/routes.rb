@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'search_entry/index'
   resources :shopping_lists
   resources :food_consumption_events
   resources :meal_consumption_events

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  searchable_id: 1
+  searchable_type: MyString
+  searchable_name: MyString
+  searchable_text: MyString
+
+two:
+  searchable_id: 1
+  searchable_type: MyString
+  searchable_name: MyString
+  searchable_text: MyString

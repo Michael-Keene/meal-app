@@ -1,0 +1,6 @@
+<% results ||= @results %>
+<%= turbo_frame_tag "search_results" do %>
+<div>
+  <%= render results if results %>
+</div>
+<% end %>

@@ -9,6 +9,14 @@ class SearchEntriesController < ApplicationController
     query.search_terms.each do |term|
       apply_search_term(term)
     end
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.update("search_results", partial: "results")
+      }
+    end
+
   end
 
   private

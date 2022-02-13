@@ -4,7 +4,7 @@ class SearchEntriesController < ApplicationController
     query = SearchQuery.new(search_query)
     return head :bad_request unless query.valid?
 
-    @results = SearchEntry.all
+    @results = initial_scope
 
     query.search_terms.each do |term|
       apply_search_term(term)
@@ -29,5 +29,17 @@ class SearchEntriesController < ApplicationController
 
   def search_query
     params.require(:query) if params[:query].present?
+  end
+
+  def initial_scope
+    if food_only?
+      SearchEntry.where(searchable_type: "Food")
+    else
+      SearchEntry.all
+    end
+  end
+
+  def food_only?
+    params[:food_only] == "true"
   end
 end

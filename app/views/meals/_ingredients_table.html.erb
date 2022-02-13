@@ -5,7 +5,7 @@
        }
   %>
 
-<%= render "search_entries/search_bar" %>
+<%= render "search_entries/search_bar", food_only: true %>
 <%= turbo_frame_tag "new_ingredient" do %>
   <%= render "ingredients/form", ingredient: @meal.ingredients.new %>
 <% end %>

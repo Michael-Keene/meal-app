@@ -25,7 +25,7 @@ class MealsController < ApplicationController
 
     respond_to do |format|
       if @meal.save
-        Search::CreateSearchEntry.perform(searchable_object: @meal)
+        Search::CreateSearchEntryCommand.perform(searchable_object: @meal)
         format.html { redirect_to meal_url(@meal), notice: "Meal was successfully created." }
         format.json { render :show, status: :created, location: @meal }
       else
@@ -39,7 +39,7 @@ class MealsController < ApplicationController
   def update
     respond_to do |format|
       if @meal.update(meal_params)
-        Search::UpdateSearchEntry.perform(searchable_object: @meal)
+        Search::UpdateSearchEntryCommand.perform(searchable_object: @meal)
         format.html { redirect_to meal_url(@meal), notice: "Meal was successfully updated." }
         format.json { render :show, status: :ok, location: @meal }
       else

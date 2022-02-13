@@ -1,10 +1,14 @@
 import { Controller } from '@hotwired/stimulus'
 
 export default class extends Controller {
-    static targets = ["query"]
+    static targets = ["query", "results"]
 
     search() {
-        this.element.requestSubmit()
+        query.form.requestSubmit()
+    }
+
+    clear() {
+        this.resultsTarget.remove()
     }
 
     get query() {

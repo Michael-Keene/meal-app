@@ -24,7 +24,7 @@ class SearchEntriesController < ApplicationController
   def apply_search_term(term)
     @results = @results
                .where("searchable_name like '%#{term}%'")
-               .or(SearchEntry.where("searchable_text like '%#{term}%'"))
+               .or(@results.where("searchable_text like '%#{term}%'"))
   end
 
   def search_query

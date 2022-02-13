@@ -19,7 +19,7 @@ class SearchQuery
   attr_reader :query
 
   def search_term_is_string?
-    unless query.is_a? String || query.nil? # we accept empty queries
+    unless query.is_a?(String) || query.nil? # we accept empty queries
       errors.add(:query, "not a valid query, must be a string")
     end
   end

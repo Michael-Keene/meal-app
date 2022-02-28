@@ -1,10 +1,10 @@
 <div data-controller="search">
 <%= turbo_frame_tag "search_bar" do %>
     <%= form_with url: search_entries_index_url(food_only: food_only || false) do |form| %>
-      <%= form.text_field :query, data: {search: {target: "query", action: "input->search#search blur->search#clear"} %>
+      <%= form.text_field :query, data: {target: "search.query", action: "input->search#search blur->search#clear"} %>
     <% end %>
 
   <%= render "search_entries/results" %>
   <%= turbo_stream_from "search_results" %>
 <% end %>
-</div>
+</div>  

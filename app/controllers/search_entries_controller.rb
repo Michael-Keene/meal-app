@@ -4,10 +4,15 @@ class SearchEntriesController < ApplicationController
     query = SearchQuery.new(search_query)
     return head :bad_request unless query.valid?
 
-    @results = initial_scope
+    set_parent_item
+    @search_results = initial_scope
 
     query.search_terms.each do |term|
       apply_search_term(term)
+    end
+
+    @results = @search_results.map do |result|
+      SearchEntryCardComponent.new(search_entry: result, item_to_add_or_remove_from: @parent_item)
     end
 
     respond_to do |format|
@@ -22,9 +27,19 @@ class SearchEntriesController < ApplicationController
   private
 
   def apply_search_term(term)
-    @results = @results
+    @search_results = @search_results
                .where("searchable_name like '%#{term}%'")
-               .or(@results.where("searchable_text like '%#{term}%'"))
+               .or(@search_results.where("searchable_text like '%#{term}%'"))
+  end
+
+  def set_parent_item
+    @parent_item ||= parent_item_class.find(params[:parent_item_id])
+  end
+
+  def parent_item_class
+    klass = params[:parent_item_type].constantize
+    return head :bad_request unless [Meal, User].include? klass # TODO: replace this hard coded list with some ducktype check
+    klass
   end
 
   def search_query

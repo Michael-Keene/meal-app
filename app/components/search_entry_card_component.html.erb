@@ -1,3 +1,8 @@
 <div>
   <%= text %>
+  <%= form_with(url: create_url, model: glue_layer_item, action: :post) do |form| %>
+    <%= form.hidden_field @searchable.class.name.foreign_key, value: @searchable.id %>
+    <%= form.number_field "grams", min: 0 if render_quantity? %>
+    <%= form.submit "Add to #{parent_description}", data: {action: "click->search#clear_form" } %>
+  <% end %>
 </div>

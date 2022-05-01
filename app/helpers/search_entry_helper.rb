@@ -1,6 +1,6 @@
 module SearchEntryHelper
 
-  def create_url(searchable, parent_item)
+  def food_item_create_url(searchable, parent_item)
     case parent_item
     when Meal
       meal_ingredients_url(parent_item, action: :post)

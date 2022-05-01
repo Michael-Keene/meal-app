@@ -9,6 +9,7 @@ module ApplicationHelper
                   klass.new(object)
                 end
     yield(presenter) if block_given?
+    presenter
   end
 
   def nav_item_selected?(path)

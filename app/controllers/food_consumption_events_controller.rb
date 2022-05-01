@@ -22,6 +22,7 @@ class FoodConsumptionEventsController < ApplicationController
   # POST /food_consumption_events or /food_consumption_events.json
   def create
     @food_consumption_event = FoodConsumptionEvent.new(food_consumption_event_params)
+    @food_consumption_event.user = current_user
 
     respond_to do |format|
       if @food_consumption_event.save
@@ -65,6 +66,6 @@ class FoodConsumptionEventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def food_consumption_event_params
-      params.require(:food_consumption_event).permit(:user_id, :food_id, :grams)
+      params.require(:food_consumption_event).permit(:food_id, :grams)
     end
 end

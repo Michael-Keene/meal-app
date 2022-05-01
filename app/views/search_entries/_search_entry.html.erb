@@ -1,3 +1,4 @@
 <div id=<%= dom_id(search_entry) %>class="relative container bg-white w-auto max-w-md">
   <%= search_entry.searchable.name %>
+  <%= render(SearchEntryCardComponent.new(search_entry: search_entry, item_to_add_or_remove_from: @parent_item)) %>
 </div>

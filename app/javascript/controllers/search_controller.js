@@ -8,7 +8,16 @@ export default class extends Controller {
     }
 
     clear() {
-        this.resultsTarget.remove()
+        requestAnimationFrame(() => {
+            if(!this.element.contains(document.activeElement)) {
+                this.resultsTarget.remove()
+            }
+        });
+    }
+
+    clear_form(event) {
+        event.originalTarget.form.requestSubmit()
+        event.originalTarget.form.parentElement.remove()
     }
 
     get query() {

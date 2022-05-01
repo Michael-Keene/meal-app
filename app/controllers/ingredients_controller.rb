@@ -25,14 +25,7 @@ class IngredientsController < ApplicationController
     if existing_ingredient_for_food(food)
       @ingredient = existing_ingredient_for_food(food)
       @ingredient.grams += ingredient_params[:grams].to_f
-      broadcast = -> { @ingredient
-                         .broadcast_replace_to(
-                           :ingredient_rows,
-                           target: @ingredient,
-                           partial: "edibles/row",
-                           locals: {edible: @ingredient}
-                         )
-      }
+      broadcast = broadcast_update_ingredient_table
     else
      @ingredient = @meal.ingredients.new(ingredient_params)
      broadcast = -> { @ingredient
@@ -105,6 +98,17 @@ class IngredientsController < ApplicationController
 
   def set_meal
     @meal = Meal.find(params[:meal_id])
+  end
+
+  def broadcast_update_ingredient_table
+    -> { @ingredient
+           .broadcast_replace_to(
+             :ingredient_rows,
+             target: @ingredient,
+             partial: "edibles/row",
+             locals: {edible: @ingredient}
+           )
+    }
   end
 
   # Only allow a list of trusted parameters through.

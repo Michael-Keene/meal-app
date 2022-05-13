@@ -9,4 +9,8 @@ class User < ApplicationRecord
 
   has_many :todays_meals, -> { consumed_on(DateTime.current) }, class_name: "MealConsumptionEvent"
   has_many :todays_food, -> { consumed_on(DateTime.current) }, class_name: "FoodConsumptionEvent"
+
+  def targets
+    attributes.symbolize_keys.slice(:fat, :carbs, :protein, :fibre, :calories)
+  end
 end

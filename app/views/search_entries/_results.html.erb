@@ -1,10 +1,8 @@
-<% results ||= @results %>
+<% results ||= Array(@results) %>
 <%= turbo_frame_tag "search_results" do %>
 <div class="absolute w-64 border <%= "hidden" unless results %>" data-search-target="results">
-  <% if results %>
-    <% results.each do |result| %>
-      <%= render result %>
-    <% end %>
+  <% results.each do |result| %>
+    <%= render result %>
   <% end %>
 </div>
 <% end %>

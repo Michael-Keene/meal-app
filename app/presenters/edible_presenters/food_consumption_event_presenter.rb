@@ -1,9 +1,15 @@
 module EdiblePresenters
   class FoodConsumptionEventPresenter < Base
 
+    attr_reader :grams
+
     def initialize(consumption_event)
       @food = consumption_event.food
       @grams = consumption_event.grams
+    end
+
+    def name
+      food.name
     end
 
     private
@@ -12,6 +18,6 @@ module EdiblePresenters
       food.send(macro)*grams/100
     end
 
-    attr_reader :food, :grams
+    attr_reader :food
   end
 end

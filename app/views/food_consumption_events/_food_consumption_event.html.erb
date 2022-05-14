@@ -1,44 +1,33 @@
+<tr>
 <div id="<%= dom_id food_consumption_event %>">
 <% present(food_consumption_event) do |food| %>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
+  <td class="px-7">
     <%= food.name %>
-  </p>
+  </td>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Grams:</strong>
+  <td class="px-7">
     <%= food.grams %>
-  </p>
+  </td>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Fat:</strong>
+  <td class="px-7">
     <%= food.fat %>
-  </p>
+  </td>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Carbs:</strong>
+  <td class="px-7">
     <%= food.carbs %>
-  </p>
+  </td>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Fibre:</strong>
+  <td class="px-7">
     <%= food.fibre %>
-  </p>
+  </td>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Protein:</strong>
+  <td class="px-7">
     <%= food.protein %>
-  </p>
+  </td>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Calories:</strong>
+  <td class="px-7">
     <%= food.calories %>
-  </p>
+  </td>
 <% end %>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this food consumption event", food_consumption_event, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this food consumption event', edit_food_consumption_event_path(food_consumption_event), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
 </div>
+</tr>

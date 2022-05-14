@@ -6,8 +6,24 @@
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Daily Log</h1>
   </div>
-
-  <div id="foods" class="min-w-full">
-    <%= render @todays_food %>
+  <div class="mx-auto">
+    <%=
+      render partial: "edibles/table",
+             locals: {
+               edibles: @todays_food,
+               turbo_stream_to_subscribe_to: :todays_food
+                     }
+    %>
   </div>
+  <div class="mx-auto">
+    <%=
+      render partial: "edibles/table",
+             locals: {
+               edibles: @todays_meals,
+               edibles_name: "Meal",
+               no_quantity: true,
+               turbo_stream_to_subscribe_to: :todays_meals
+                     }
+    %>
+  </div
 </div>

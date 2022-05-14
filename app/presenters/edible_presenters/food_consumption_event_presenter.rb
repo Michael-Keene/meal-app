@@ -6,10 +6,19 @@ module EdiblePresenters
     def initialize(consumption_event)
       @food = consumption_event.food
       @grams = consumption_event.grams
+      @consumption_event = consumption_event
     end
 
     def name
       food.name
+    end
+
+    def edit_path
+      Rails
+        .application
+        .routes
+        .url_helpers
+        .edit_food_consumption_event_path(@consumption_event)
     end
 
     private

@@ -1,15 +1,17 @@
 module ApplicationHelper
 
-  def present(object)
-    presenter = if object.edible?
-                  klass = EdiblePresenters::Base.descendants.find do |presenter|
-                    p [presenter.name, "EdiblePresenters::#{object.class.name}Presenter"]
-                    presenter.name.match? "EdiblePresenters::#{object.class.name}Presenter"
-                  end
-                  klass.new(object)
-                end
+  def present(object, given_presenter = find_presenter(object))
+    presenter = given_presenter.new(object)
     yield(presenter) if block_given?
     presenter
+  end
+
+  def find_presenter(object)
+    if object.edible?
+      EdiblePresenters::Base.descendants.find do |presenter|
+        presenter.name.match? "EdiblePresenters::#{object.class.name}Presenter"
+      end
+    end
   end
 
   def nav_item_selected?(path)

@@ -17,6 +17,13 @@ module EdiblePresenters
         .edit_meal_consumption_event_path(@meal_consumption_event)
     end
 
+    def dom_id(prefix = nil)
+      ActionView::RecordIdentifier.dom_id(
+        @meal_consumption_event,
+        prefix
+      )
+    end
+
     private
 
     attr_reader :presented_meal

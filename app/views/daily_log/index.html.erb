@@ -10,7 +10,19 @@
     <%=
       render partial: "edibles/table",
              locals: {
+               edibles: [current_user, @meal_totals, @food_totals],
+               no_quantity: true,
+               presenter: UserTargetsPresenter,
+               turbo_stream_to_subscribe_to: :todays_food
+                     }
+    %>
+  </div>
+  <div class="mx-auto">
+    <%=
+      render partial: "edibles/table",
+             locals: {
                edibles: @todays_food,
+               no_quantity: true,
                turbo_stream_to_subscribe_to: :todays_food
                      }
     %>

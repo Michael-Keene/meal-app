@@ -11,6 +11,14 @@ module EdiblePresenters
       end
     end
 
+    def dom_id(*args)
+      raise NotImplementedError
+    end
+
+    def edit_path
+      raise NotImplementedError
+    end
+
     private
 
     def stats_for_macro

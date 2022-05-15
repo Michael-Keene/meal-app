@@ -32,7 +32,11 @@
   <tbody class="bg-white divide-y divide-gray-200" id="edible_rows">
     <%= turbo_stream_from turbo_stream_to_subscribe_to %>
     <% edibles.each do |edible|%>
-      <%= render partial: "edibles/row", locals: {edible: edible} %>
+      <%= render partial: "edibles/row", locals: {
+               edible: edible,
+               presenter: presenter ||= nil,
+               no_quantity: no_quantity ||= false
+                                             } %>
     <% end %>
   </tbody>
 </table>

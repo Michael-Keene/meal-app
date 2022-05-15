@@ -14,6 +14,13 @@ module EdiblePresenters
     def supplementry_text
     end
 
+    def dom_id(prefix = nil)
+      ActionView::RecordIdentifier.dom_id(
+        @food,
+        prefix
+      )
+    end
+
     private
 
     attr_reader :food

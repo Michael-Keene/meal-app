@@ -20,6 +20,13 @@ module EdiblePresenters
         .edit_meal_path(meal)
     end
 
+    def dom_id(prefix = nil)
+      ActionView::RecordIdentifier.dom_id(
+        meal,
+        prefix
+      )
+    end
+
     private
 
     def stats_for_macro(macro)

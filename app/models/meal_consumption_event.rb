@@ -5,4 +5,11 @@ class MealConsumptionEvent < ApplicationRecord
   belongs_to :user
   belongs_to :meal
 
+  delegate :fat,
+           :fibre,
+           :carbs,
+           :protein,
+           :calories,
+           to: :meal
+
 end

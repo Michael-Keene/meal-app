@@ -17,6 +17,13 @@ module EdiblePresenters
         .edit_meal_ingredient_path(ingredient, meal_id: ingredient.meal.id)
     end
 
+    def dom_id(prefix = nil)
+      ActionView::RecordIdentifier.dom_id(
+        @ingredient,
+        prefix
+      )
+    end
+
     private
 
     attr_reader :food, :ingredient

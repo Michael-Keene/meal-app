@@ -21,6 +21,13 @@ module EdiblePresenters
         .edit_food_consumption_event_path(@consumption_event)
     end
 
+    def dom_id(prefix = nil)
+      ActionView::RecordIdentifier.dom_id(
+        @consumption_event,
+        prefix
+      )
+    end
+
     private
 
     def stats_for_macro(macro)

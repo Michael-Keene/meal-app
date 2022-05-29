@@ -10,9 +10,19 @@
     <%=
       render partial: "edibles/table",
              locals: {
-               edibles: [current_user, @meal_totals, @food_totals],
+               edibles: [@current_user],
                no_quantity: true,
                presenter: UserTargetsPresenter,
+               turbo_stream_to_subscribe_to: :no_stream
+                     }
+    %>
+    <%=
+      render partial: "edibles/table",
+             locals: {
+               edibles: [@meal_totals, @food_totals],
+               no_quantity: true,
+               no_header: true,
+               presenter: FoodTotalsPresenter,
                turbo_stream_to_subscribe_to: :todays_food
                      }
     %>

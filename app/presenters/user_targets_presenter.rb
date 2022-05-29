@@ -1,8 +1,6 @@
 class UserTargetsPresenter < EdiblePresenters::Base
 
   def initialize(user)
-    return FoodTotalsPresenter.new(user) unless user.is_a? User
-
     @user = user
     @targets = user.targets
   end
@@ -16,7 +14,7 @@ class UserTargetsPresenter < EdiblePresenters::Base
         .application
         .routes
         .url_helpers
-        .edit_user_path(@user)
+        .edit_user_targets_path(@user)
   end
 
   def dom_id

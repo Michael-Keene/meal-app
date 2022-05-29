@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :fat, :carbs, :calories, :fibre, :protein, numericality: true
+
   has_many :meal_consumption_events
   has_many :food_consumption_events
 

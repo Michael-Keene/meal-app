@@ -8,9 +8,12 @@ Rails.application.routes.draw do
     resources :ingredients
   end
   resources :foods
+  get 'user_targets', to: 'user_targets#show', as: :user_targets
+  patch 'user_targets', to: 'user_targets#update'
+  get 'user_targets/edit', to: 'user_targets#edit', as: :edit_user_targets
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root "daily_log#index"
+  root "daily_log#index", as: :daily_log
 end

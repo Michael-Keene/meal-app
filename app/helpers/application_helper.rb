@@ -14,6 +14,14 @@ module ApplicationHelper
     end
   end
 
+  def root_path
+    daily_log_path
+  end
+
+  def root_url
+    daily_log_url
+  end
+
   def nav_item_selected?(path)
     if path == root_path
       request.url == root_url

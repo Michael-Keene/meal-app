@@ -7,11 +7,11 @@ class FoodTotalsPresenter < UserTargetsPresenter
   end
 
   def name
-    "Today's #{(totals.fetch(:type) { "Intake"}).classify} Totals"
+    "Today's #{(totals.fetch(:type) { "Intake" }).to_s.classify} Totals"
   end
 
   def dom_id
-    "#{name} user #{(totals.fetch(:user) { current_user }).id}".split.join("_").downcase.gsub("'", "")
+    "#{name} user #{(totals.fetch(:user) { @current_user }).id}".split.join("_").downcase.gsub("'", "")
   end
 
   private

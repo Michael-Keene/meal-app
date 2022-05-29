@@ -11,7 +11,7 @@ end
     <nav class="py-4 ml-4">
   <div>
       <ul class="flex">
-        <li class="mr-5"> <%= link_to "Daily Log", root_path, {"class": class_info_based_on_selection.call(root_path) }  %></li>
+        <li class="mr-5"> <%= link_to "Daily Log", daily_log_path, {"class": class_info_based_on_selection.call(daily_log_path) }  %></li>
         <li class="mr-5"> <%= link_to "Foods", foods_path, {"class": class_info_based_on_selection.call(foods_path) } %></li>
         <li class="mr-5"> <%= link_to "Meals", meals_path, {"class": class_info_based_on_selection.call(meals_path) } %></li>
         <li class="mr-5"> <%= link_to "Shopping List", shopping_lists_path, {"class": class_info_based_on_selection.call(shopping_lists_path) } %></li>

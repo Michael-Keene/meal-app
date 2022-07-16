@@ -1,0 +1,40 @@
+<% user_targets = UserTargetsPresenter.new(current_user) %>
+<div class="mx-auto md:w-2/3 w-full flex">
+  <div class="mx-auto">
+    <% if notice.present? %>
+      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    <% end %>
+
+<div id="<%= dom_id current_user %>">
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Fat:</strong>
+    <%= user_targets.fat %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Carbs:</strong>
+    <%= user_targets.carbs %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Fibre:</strong>
+    <%= user_targets.fibre %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Protein:</strong>
+    <%= user_targets.protein %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Calories:</strong>
+    <%= user_targets.calories %>
+  </p>
+
+</div>
+
+    <%= link_to 'Edit this user_target', edit_user_targets_path(@user_target), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Back to Daily Log', daily_log_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+</div>

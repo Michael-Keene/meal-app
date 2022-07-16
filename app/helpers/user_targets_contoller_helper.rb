@@ -1,0 +1,2 @@
+module UserTargetsContollerHelper
+end

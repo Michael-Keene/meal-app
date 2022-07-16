@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.7.4"
+ruby "2.7.6"
 
 gem "devise"
 
@@ -80,3 +80,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "tty-command", "~> 0.10.1"

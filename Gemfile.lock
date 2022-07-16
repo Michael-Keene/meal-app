@@ -141,6 +141,8 @@ GEM
     nokogiri (1.13.3-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pastel (0.8.0)
+      tty-color (~> 0.5)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -213,6 +215,9 @@ GEM
       railties (>= 6.0.0)
     thor (1.2.1)
     timeout (0.2.0)
+    tty-color (0.6.0)
+    tty-command (0.10.1)
+      pastel (~> 0.8)
     turbo-rails (1.0.1)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
@@ -263,6 +268,7 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
   stimulus-rails
   tailwindcss-rails
+  tty-command (~> 0.10.1)
   turbo-rails
   tzinfo-data
   view_component
@@ -270,7 +276,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 2.7.4p191
+   ruby 2.7.6p219
 
 BUNDLED WITH
-   2.2.26
+   2.3.15

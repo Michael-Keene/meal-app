@@ -68,4 +68,5 @@ class MealConsumptionEventsController < ApplicationController
     def meal_consumption_event_params
       params.require(:meal_consumption_event).permit(:meal_id)
     end
+
 end

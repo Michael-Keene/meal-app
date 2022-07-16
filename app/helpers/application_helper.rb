@@ -1,16 +1,19 @@
 module ApplicationHelper
 
-  def present(object, given_presenter = find_presenter(object))
-    presenter = given_presenter.new(object)
+  p EdiblePresenters::MealPresenter
+  p EdiblePresenters::IngredientPresenter
+
+  def present(object, given_presenter = nil)
+    presenter = (given_presenter ||  find_presenter(object)).new(object)
     yield(presenter) if block_given?
     presenter
   end
 
   def find_presenter(object)
     if object.edible?
-      EdiblePresenters::Base.descendants.find do |presenter|
-        presenter.name.match? "EdiblePresenters::#{object.class.name}Presenter"
-      end
+      presenter = "EdiblePresenters::#{object.class.name}Presenter".constantize
+      raise "not correct parent" unless presenter.ancestors.include? EdiblePresenters::Base
+      presenter
     end
   end
 

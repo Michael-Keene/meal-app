@@ -1,5 +1,5 @@
 module EdiblePresenters
-  class IngredientPresenter < Base
+  class IngredientPresenter < EdiblePresenters::Base
 
     def initialize(ingredient)
       @ingredient = ingredient

@@ -27,6 +27,9 @@
                      }
     %>
   </div>
+
+  <%= render "search_entries/search_bar", parent_item: @current_user %>
+
   <div class="mx-auto">
     <%=
       render partial: "edibles/table",

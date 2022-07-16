@@ -1,6 +1,6 @@
 <div data-controller="search" data-action="focusout->search#clear">
 <%= turbo_frame_tag "search_bar" do %>
-    <%= form_with url: search_entries_index_url(food_only: food_only || false) do |form| %>
+    <%= form_with url: search_entries_index_url(food_only: food_only ||= false) do |form| %>
       <%= form.text_field :query, data: {target: "search.query", action: "input->search#search"} %>
       <%= form.hidden_field :parent_item_type, value: parent_item.class %>
       <%= form.hidden_field :parent_item_id, value: parent_item.id %>

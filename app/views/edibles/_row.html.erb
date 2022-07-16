@@ -1,6 +1,6 @@
 <%
   # pass nil presenter by default to force calculation
-  present(edible, presenter) do |present_edible|
+  present(edible, presenter ||= nil) do |present_edible|
 %>
   <tr id=<%= present_edible.dom_id %>>
     <td class="px-7">

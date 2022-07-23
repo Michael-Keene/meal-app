@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SearchEntriesController < ApplicationController
 
   def index
@@ -17,19 +18,18 @@ class SearchEntriesController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.turbo_stream {
-        render turbo_stream: turbo_stream.update("search_results", partial: "results")
-      }
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update('search_results', partial: 'results')
+      end
     end
-
   end
 
   private
 
   def apply_search_term(term)
     @search_results = @search_results
-               .where("searchable_name like '%#{term}%'")
-               .or(@search_results.where("searchable_text like '%#{term}%'"))
+                      .where("searchable_name like '%#{term}%'")
+                      .or(@search_results.where("searchable_text like '%#{term}%'"))
   end
 
   def set_parent_item
@@ -38,7 +38,10 @@ class SearchEntriesController < ApplicationController
 
   def parent_item_class
     klass = params[:parent_item_type].constantize
-    return head :bad_request unless [Meal, User].include? klass # TODO: replace this hard coded list with some ducktype check
+    unless [Meal, User].include? klass
+      return head :bad_request
+    end # TODO: replace this hard coded list with some ducktype check
+
     klass
   end
 
@@ -48,13 +51,14 @@ class SearchEntriesController < ApplicationController
 
   def initial_scope
     if food_only?
-      SearchEntry.where(searchable_type: "Food")
+      SearchEntry.where(searchable_type: 'Food')
     else
       SearchEntry.all
     end
   end
 
   def food_only?
-    params[:food_only] == "true"
+    params[:food_only] == 'true'
   end
+
 end

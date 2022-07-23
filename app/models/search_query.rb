@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SearchQuery
 
   include ActiveModel::Validations
@@ -20,7 +21,7 @@ class SearchQuery
 
   def search_term_is_string?
     unless query.is_a?(String) || query.nil? # we accept empty queries
-      errors.add(:query, "not a valid query, must be a string")
+      errors.add(:query, 'not a valid query, must be a string')
     end
   end
 

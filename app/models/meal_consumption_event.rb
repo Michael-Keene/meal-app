@@ -1,4 +1,6 @@
+# frozen_string_literal: true
 class MealConsumptionEvent < ApplicationRecord
+
   include Edible
   include Consumable
 

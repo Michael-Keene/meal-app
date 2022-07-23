@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module EdiblePresenters
   # All the stats for this class are the meal, but we want to edit the fact that we ate it
   class MealConsumptionEventPresenter < MealPresenter
@@ -27,5 +28,6 @@ module EdiblePresenters
     private
 
     attr_reader :presented_meal
+
   end
 end

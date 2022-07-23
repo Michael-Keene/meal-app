@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class UserTargetsPresenter < EdiblePresenters::Base
 
   def initialize(user)
@@ -10,11 +11,11 @@ class UserTargetsPresenter < EdiblePresenters::Base
   end
 
   def edit_path
-      Rails
-        .application
-        .routes
-        .url_helpers
-        .edit_user_targets_path(@user)
+    Rails
+      .application
+      .routes
+      .url_helpers
+      .edit_user_targets_path(@user)
   end
 
   def dom_id
@@ -30,7 +31,8 @@ class UserTargetsPresenter < EdiblePresenters::Base
 
   def stats_for_macro(macro)
     targets.fetch(macro) do
-      raise NoMethodError, "macro accessor not set"
+      raise NoMethodError, 'macro accessor not set'
     end
   end
+
 end

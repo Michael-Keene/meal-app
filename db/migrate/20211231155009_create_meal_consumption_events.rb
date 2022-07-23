@@ -1,4 +1,6 @@
+# frozen_string_literal: true
 class CreateMealConsumptionEvents < ActiveRecord::Migration[7.0]
+
   def change
     create_table :meal_consumption_events do |t|
       t.references :user, null: false, foreign_key: true
@@ -7,4 +9,5 @@ class CreateMealConsumptionEvents < ActiveRecord::Migration[7.0]
       t.timestamps
     end
   end
+
 end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Rails.application.routes.draw do
   post 'search_entries/index'
   resources :shopping_lists
@@ -15,5 +16,5 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root "daily_log#index", as: :daily_log
+  root 'daily_log#index', as: :daily_log
 end

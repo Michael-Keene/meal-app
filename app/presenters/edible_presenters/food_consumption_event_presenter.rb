@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module EdiblePresenters
   class FoodConsumptionEventPresenter < Base
 
@@ -31,9 +32,10 @@ module EdiblePresenters
     private
 
     def stats_for_macro(macro)
-      food.send(macro)*grams/100
+      food.send(macro) * grams / 100
     end
 
     attr_reader :food
+
   end
 end

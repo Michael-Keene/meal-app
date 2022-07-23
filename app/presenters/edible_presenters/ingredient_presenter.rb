@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module EdiblePresenters
   class IngredientPresenter < EdiblePresenters::Base
 
@@ -29,11 +30,12 @@ module EdiblePresenters
     attr_reader :food, :ingredient
 
     def stats_for_macro(macro)
-      ratio*food.send(macro)
+      ratio * food.send(macro)
     end
 
     def ratio
-      ingredient.grams/100
+      ingredient.grams / 100
     end
+
   end
 end

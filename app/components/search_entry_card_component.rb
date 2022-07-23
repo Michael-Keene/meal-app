@@ -34,15 +34,15 @@ class SearchEntryCardComponent < ViewComponent::Base
   end
 
   def render_quantity?
-    glue_layer_item.class.column_names.include? "grams"
+    glue_layer_item.class.column_names.include? 'grams'
   end
 
   def parent_description
     case @item_to_add_or_remove_from
     when User
-      "todays intake"
+      'todays intake'
     when Meal
-      "Meal"
+      'Meal'
     end
   end
 

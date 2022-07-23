@@ -1,10 +1,10 @@
+# frozen_string_literal: true
 module ApplicationHelper
-
   p EdiblePresenters::MealPresenter
   p EdiblePresenters::IngredientPresenter
 
   def present(object, given_presenter = nil)
-    presenter = (given_presenter ||  find_presenter(object)).new(object)
+    presenter = (given_presenter || find_presenter(object)).new(object)
     yield(presenter) if block_given?
     presenter
   end
@@ -12,7 +12,8 @@ module ApplicationHelper
   def find_presenter(object)
     if object.edible?
       presenter = "EdiblePresenters::#{object.class.name}Presenter".constantize
-      raise "not correct parent" unless presenter.ancestors.include? EdiblePresenters::Base
+      raise 'not correct parent' unless presenter.ancestors.include? EdiblePresenters::Base
+
       presenter
     end
   end

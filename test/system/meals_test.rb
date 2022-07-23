@@ -1,43 +1,46 @@
-require "application_system_test_case"
+# frozen_string_literal: true
+require 'application_system_test_case'
 
 class MealsTest < ApplicationSystemTestCase
+
   setup do
     @meal = meals(:one)
   end
 
-  test "visiting the index" do
+  test 'visiting the index' do
     visit meals_url
-    assert_selector "h1", text: "Meals"
+    assert_selector 'h1', text: 'Meals'
   end
 
-  test "should create meal" do
+  test 'should create meal' do
     visit meals_url
-    click_on "New meal"
+    click_on 'New meal'
 
-    fill_in "Name", with: @meal.name
-    fill_in "Recipe", with: @meal.recipe
-    click_on "Create Meal"
+    fill_in 'Name', with: @meal.name
+    fill_in 'Recipe', with: @meal.recipe
+    click_on 'Create Meal'
 
-    assert_text "Meal was successfully created"
-    click_on "Back"
+    assert_text 'Meal was successfully created'
+    click_on 'Back'
   end
 
-  test "should update Meal" do
+  test 'should update Meal' do
     visit meal_url(@meal)
-    click_on "Edit this meal", match: :first
+    click_on 'Edit this meal', match: :first
 
-    fill_in "Name", with: @meal.name
-    fill_in "Recipe", with: @meal.recipe
-    click_on "Update Meal"
+    fill_in 'Name', with: @meal.name
+    fill_in 'Recipe', with: @meal.recipe
+    click_on 'Update Meal'
 
-    assert_text "Meal was successfully updated"
-    click_on "Back"
+    assert_text 'Meal was successfully updated'
+    click_on 'Back'
   end
 
-  test "should destroy Meal" do
+  test 'should destroy Meal' do
     visit meal_url(@meal)
-    click_on "Destroy this meal", match: :first
+    click_on 'Destroy this meal', match: :first
 
-    assert_text "Meal was successfully destroyed"
+    assert_text 'Meal was successfully destroyed'
   end
+
 end

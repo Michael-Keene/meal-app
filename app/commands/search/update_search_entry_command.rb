@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Search
   class UpdateSearchEntryCommand < ApplicationCommand
 
@@ -13,5 +14,6 @@ module Search
       @searchable_object = searchable_object
       @entry = searchable_object.search_entry
     end
+
   end
 end

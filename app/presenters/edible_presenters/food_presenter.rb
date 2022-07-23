@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module EdiblePresenters
   class FoodPresenter < Base
 
@@ -11,8 +12,7 @@ module EdiblePresenters
              :protein,
              :calories, to: :food
 
-    def supplementry_text
-    end
+    def supplementry_text; end
 
     def dom_id(prefix = nil)
       ActionView::RecordIdentifier.dom_id(

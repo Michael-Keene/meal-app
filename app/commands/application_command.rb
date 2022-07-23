@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ApplicationCommand
 
   def self.perform(*args, **kwargs)

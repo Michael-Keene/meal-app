@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Search
   class CreateSearchEntryCommand < ApplicationCommand
 
@@ -22,5 +23,6 @@ module Search
     def has_pre_existing_entry?
       searchable_object.search_entry.present?
     end
+
   end
 end

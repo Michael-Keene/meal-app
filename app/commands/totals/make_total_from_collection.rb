@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Totals
   class MakeTotalFromCollection < ApplicationCommand
 
@@ -21,10 +22,11 @@ module Totals
       @user = user
     end
 
-    [:fat, :fibre, :carbs, :protein, :calories].each do |macro|
+    %i[fat fibre carbs protein calories].each do |macro|
       define_method("total_#{macro}") do
         @collection.sum { |item| item.send(macro) }
       end
     end
+
   end
 end

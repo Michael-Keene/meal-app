@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class FoodTotalsPresenter < UserTargetsPresenter
 
   def initialize(totals)
@@ -7,11 +8,11 @@ class FoodTotalsPresenter < UserTargetsPresenter
   end
 
   def name
-    "Today's #{(totals.fetch(:type) { "Intake" }).to_s.classify} Totals"
+    "Today's #{(totals.fetch(:type) { 'Intake' }).to_s.classify} Totals"
   end
 
   def dom_id
-    "#{name} user #{(totals.fetch(:user) { @current_user }).id}".split.join("_").downcase.gsub("'", "")
+    "#{name} user #{(totals.fetch(:user) { @current_user }).id}".split.join('_').downcase.gsub("'", '')
   end
 
   private
@@ -20,7 +21,7 @@ class FoodTotalsPresenter < UserTargetsPresenter
 
   def stats_for_macro(macro)
     totals.fetch(macro) do
-      raise NoMethodError, "macro accessor not set"
+      raise NoMethodError, 'macro accessor not set'
     end
   end
 

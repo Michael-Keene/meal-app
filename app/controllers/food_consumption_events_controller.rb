@@ -22,7 +22,6 @@ class FoodConsumptionEventsController < ApplicationController
   # POST /food_consumption_events or /food_consumption_events.json
   def create
     @food_consumption_event = new_or_existing_consumption_event
-    binding.irb
     @food_consumption_event.grams = @food_consumption_event.grams.to_f + food_consumption_event_params[:grams].to_f
 
     respond_to do |format|

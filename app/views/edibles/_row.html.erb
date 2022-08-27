@@ -3,33 +3,33 @@
   present(edible, presenter ||= nil) do |present_edible|
 %>
   <tr id=<%= present_edible.dom_id %>>
-    <td class="px-7">
+    <td>
       <%= present_edible.name %>
     </td>
 
     <% unless no_quantity ||= false %>
-    <td class="px-7">
+    <td>
       <%= present_edible.grams %>
     </td>
       <% end %>
 
-    <td class="px-7">
+    <td>
       <%= present_edible.fat %>
     </td>
 
-    <td class="px-7">
+    <td>
       <%= present_edible.carbs %>
     </td>
 
-    <td class="px-7">
+    <td>
       <%= present_edible.fibre %>
     </td>
 
-    <td class="px-7">
+    <td>
       <%= present_edible.protein %>
     </td>
 
-    <td class="px-7">
+    <td>
       <%= present_edible.calories %>
     </td>
 

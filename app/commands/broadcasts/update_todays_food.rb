@@ -5,13 +5,13 @@ module Broadcasts
     def perform
       user.broadcast_replace_to(
         :todays_totals,
-        target: food_totals,
+        target: UserTargetsPresenter.new(food_totals).dom_id,
         partial: 'edibles/row',
         locals: {
           edible: food_totals,
           no_quantity: true,
           no_header: true,
-          presenter: FoodTotalsPresenter
+          presenter: UserTargetsPresenter
         }
       )
     end

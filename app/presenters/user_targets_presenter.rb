@@ -25,6 +25,11 @@ class UserTargetsPresenter < EdiblePresenters::Base
     )
   end
 
+  # you cannot delete totals
+  def deletable?
+    false
+  end
+
   private
 
   attr_reader :targets

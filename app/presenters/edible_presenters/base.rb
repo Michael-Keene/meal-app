@@ -20,6 +20,11 @@ module EdiblePresenters
       raise NotImplementedError
     end
 
+    # true by default, feel free to overwrite
+    def deletable?
+      true
+    end
+
     private
 
     def stats_for_macro

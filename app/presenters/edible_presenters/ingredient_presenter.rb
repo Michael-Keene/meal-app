@@ -11,11 +11,13 @@ module EdiblePresenters
     delegate :grams, to: :ingredient
 
     def edit_path
-      Rails
-        .application
-        .routes
-        .url_helpers
+      url_helper
         .edit_meal_ingredient_path(ingredient, meal_id: ingredient.meal.id)
+    end
+
+    def destroy_path
+      url_helper
+        .meal_ingredient_path(ingredient, meal_id: ingredient.meal_id)
     end
 
     def dom_id(prefix = nil)

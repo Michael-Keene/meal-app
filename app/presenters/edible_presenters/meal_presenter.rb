@@ -14,11 +14,13 @@ module EdiblePresenters
     end
 
     def edit_path
-      Rails
-        .application
-        .routes
-        .url_helpers
+      url_helper
         .edit_meal_path(meal)
+    end
+
+    def destroy_path
+      url_helper
+        .meal_path(meal)
     end
 
     def dom_id(prefix = nil)

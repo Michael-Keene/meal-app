@@ -11,10 +11,7 @@ module EdiblePresenters
     end
 
     def edit_path
-      Rails
-        .application
-        .routes
-        .url_helpers
+      url_helper
         .edit_meal_consumption_event_path(@meal_consumption_event)
     end
 

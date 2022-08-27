@@ -20,12 +20,22 @@ module EdiblePresenters
       raise NotImplementedError
     end
 
+    def delete_path
+      raise NotImplementedError
+    end
     # true by default, feel free to overwrite
     def deletable?
       true
     end
 
     private
+
+    def url_helper
+      Rails
+        .application
+        .routes
+        .url_helpers
+    end
 
     def stats_for_macro
       raise NotImplementedError

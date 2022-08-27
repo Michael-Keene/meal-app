@@ -11,10 +11,7 @@ class UserTargetsPresenter < EdiblePresenters::Base
   end
 
   def edit_path
-    Rails
-      .application
-      .routes
-      .url_helpers
+    url_helper
       .edit_user_targets_path(@user)
   end
 

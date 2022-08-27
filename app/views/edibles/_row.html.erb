@@ -33,8 +33,17 @@
       <%= present_edible.calories %>
     </td>
 
+    <% if present_edible.directly_editable? %>
     <td>
       <%= link_to 'Edit', present_edible.edit_path, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     </td>
+    <% end %>
+
+    <% if present_edible.deletable? %>
+    <td>
+      <%= link_to 'Destroy', present_edible.destroy_path, data: { "turbo-method": :delete }, class: "rounded-lg py-3 ml-2 px-5 bg-red-400 text-neutral-50 inline-block font-medium" %>
+    </td>
+    <% end %>
+
   </tr>
 <% end %>

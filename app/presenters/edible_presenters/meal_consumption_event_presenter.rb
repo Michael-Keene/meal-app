@@ -10,9 +10,8 @@ module EdiblePresenters
       @presented_meal = super(meal_consumption_event.meal)
     end
 
-    def edit_path
-      url_helper
-        .edit_meal_consumption_event_path(@meal_consumption_event)
+    def directly_editable?
+      false
     end
 
     def dom_id(prefix = nil)

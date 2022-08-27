@@ -27,6 +27,11 @@ class UserTargetsPresenter < EdiblePresenters::Base
     false
   end
 
+  # you cannot directly edit totals
+  def directly_editable?
+    false
+  end
+
   private
 
   attr_reader :targets

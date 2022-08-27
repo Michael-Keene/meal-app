@@ -20,11 +20,16 @@ module EdiblePresenters
       raise NotImplementedError
     end
 
-    def delete_path
+    def destroy_path
       raise NotImplementedError
     end
     # true by default, feel free to overwrite
     def deletable?
+      true
+    end
+
+    # true by default, feel free to overwrite
+    def directly_editable?
       true
     end
 

@@ -8,9 +8,6 @@ class FoodConsumptionEventsController < ApplicationController
     @food_consumption_events = FoodConsumptionEvent.all
   end
 
-  # GET /food_consumption_events/1 or /food_consumption_events/1.json
-  def show; end
-
   # GET /food_consumption_events/new
   def new
     @food_consumption_event = FoodConsumptionEvent.new

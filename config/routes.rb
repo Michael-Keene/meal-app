@@ -2,8 +2,8 @@
 Rails.application.routes.draw do
   post 'search_entries/index'
   resources :shopping_lists
-  resources :food_consumption_events
-  resources :meal_consumption_events
+  resources :food_consumption_events, except: :show
+  resources :meal_consumption_events, except: :show
   devise_for :users
   resources :meals do
     resources :ingredients

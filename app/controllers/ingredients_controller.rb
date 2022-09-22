@@ -72,6 +72,9 @@ class IngredientsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to meal_url(@meal), notice: 'Ingredient was successfully destroyed.' }
+      format.turbo_stream {
+        # handle properly
+        }
       format.json { head :no_content }
     end
   end

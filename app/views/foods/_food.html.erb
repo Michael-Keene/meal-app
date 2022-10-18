@@ -5,30 +5,7 @@
     <%= food.name %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Fat:</strong>
-    <%= food.fat %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Carbs:</strong>
-    <%= food.carbs %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Fibre:</strong>
-    <%= food.fibre %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Protein:</strong>
-    <%= food.protein %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Calories:</strong>
-    <%= food.calories %>
-  </p>
+  <%= render "meals/macros", meal: food %>
 
   <% if action_name != "show" %>
     <%= link_to "Show this food", food, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

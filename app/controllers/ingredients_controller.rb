@@ -70,11 +70,12 @@ class IngredientsController < ApplicationController
   def destroy
     @ingredient.destroy
 
+    Broadcasts::DestroyIngredient.perform(ingredient: @ingredient)
     respond_to do |format|
       format.html { redirect_to meal_url(@meal), notice: 'Ingredient was successfully destroyed.' }
-      format.turbo_stream {
-        # handle properly
-        }
+      format.turbo_stream do
+        head :no_content, status: :ok
+      end
       format.json { head :no_content }
     end
   end

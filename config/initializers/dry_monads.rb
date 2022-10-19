@@ -1,0 +1,1 @@
+extend Dry::Monads[:result]

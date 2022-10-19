@@ -10,12 +10,12 @@ class SearchEntries < Thor
     Food.all.each do |food|
       next if SearchEntry.find_by(searchable_type: food.class.name, searchable_id: food.id)
 
-      Search::CreateSearchEntryCommand.perform(searchable_object: food)
+      p [food, Search::CreateSearchEntryCommand.perform(searchable_object: food)]
     end
     Meal.all.each do |meal|
       next if SearchEntry.find_by(searchable_type: meal.class.name, searchable_id: meal.id)
 
-      Search::CreateSearchEntryCommand.perform(searchable_object: meal)
+      p [meal, Search::CreateSearchEntryCommand.perform(searchable_object: meal)]
     end
   end
 

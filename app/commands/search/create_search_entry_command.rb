@@ -3,8 +3,12 @@ module Search
   class CreateSearchEntryCommand < ApplicationCommand
 
     def perform
-      unless has_pre_existing_entry?
-        entry.update(searchable_name: searchable_object.name, searchable_text: searchable_object.try(:recipe))
+      return Success(:preexisting_entry) if has_pre_existing_entry?
+
+      if entry.update(searchable_name: searchable_object.name, searchable_text: searchable_object.try(:recipe))
+        Success(entry)
+      else
+        Failure(entry)
       end
     end
 

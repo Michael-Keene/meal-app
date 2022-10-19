@@ -3,7 +3,11 @@ module Search
   class UpdateSearchEntryCommand < ApplicationCommand
 
     def perform
-      entry.update(searchable_name: searchable_object.name, searchable_text: searchable_object.try(:recipe))
+      if entry.update(searchable_name: searchable_object.name, searchable_text: searchable_object.try(:recipe))
+        Success(entry)
+      else
+        Failure(entry)
+      end
     end
 
     private

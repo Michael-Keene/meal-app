@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
+  concern :searchable do
+    post 'search_entries/index'
+  end
+
   post 'search_entries/index'
   resources :shopping_lists
   resources :food_consumption_events, except: :show
@@ -7,6 +11,13 @@ Rails.application.routes.draw do
   devise_for :users
   resources :meals do
     resources :ingredients
+  end
+  namespace :foods do
+    concerns :searchable
+  end
+
+  namespace :meals do
+    concerns :searchable
   end
   resources :foods
   get 'user_targets', to: 'user_targets#show', as: :user_targets

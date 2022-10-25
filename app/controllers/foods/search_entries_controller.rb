@@ -6,7 +6,7 @@ module Foods
     private
 
     def query
-      SearchQuery.new(search_query, model_to_search: Food)
+      super.search_only_in_model(Food)
     end
 
   end

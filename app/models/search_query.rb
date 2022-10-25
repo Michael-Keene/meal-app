@@ -8,9 +8,14 @@ class SearchQuery
 
   attr_reader :model_to_search
 
-  def initialize(query, model_to_search: nil)
+  def initialize(query)
     @query = query
-    @model_to_search = model_to_search
+  end
+
+  def search_only_in_model(model)
+    raise :model_already_set if @model_to_search
+
+    @model_to_search = model
   end
 
   def search_terms

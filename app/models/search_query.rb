@@ -4,15 +4,25 @@ class SearchQuery
   include ActiveModel::Validations
 
   validate :search_term_is_string?
+  validate :model_to_search_is_searchable?
 
-  def initialize(query)
+  attr_reader :model_to_search
+
+  def initialize(query, model_to_search: nil)
     @query = query
+    @model_to_search = model_to_search
   end
 
   def search_terms
-    query
-      .to_s # squash nil to ""
-      .split
+    return [""] if query.blank?
+
+    query.split
+  end
+
+  def model_filter
+    return unless model_to_search
+
+    {searchable_type: model_to_search.name}
   end
 
   private
@@ -22,6 +32,14 @@ class SearchQuery
   def search_term_is_string?
     unless query.is_a?(String) || query.nil? # we accept empty queries
       errors.add(:query, 'not a valid query, must be a string')
+    end
+  end
+
+  def model_to_search_is_searchable?
+    return unless model_to_search
+
+    unless model_to_search.is_a?(Class) && model_to_search.include?(Searchable)
+      errors.add(:model_to_search, "#{model_to_search} is not a searchable model")
     end
   end
 

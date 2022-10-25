@@ -6,10 +6,9 @@ module Search
     def perform
       return Failure(search_query) unless search_query&.valid?
 
-      search_query
-        .search_terms
-        .map { |term| SearchEntry.with_text(term) }
-        .reduce(&:merge)
+      Success(
+        query_matches.merge(SearchEntry.where(search_query.model_filter))
+      )
     end
 
     private
@@ -18,6 +17,13 @@ module Search
 
     def initialize(search_query:)
       @search_query = search_query
+    end
+
+    def query_matches
+      search_query
+        .search_terms
+        .map { |term| SearchEntry.with_text(term) }
+        .reduce(&:merge)
     end
 
   end

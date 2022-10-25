@@ -2,18 +2,14 @@
 class SearchEntriesController < ApplicationController
 
   def index
-    query = SearchQuery.new(search_query)
-    return head :bad_request unless query.valid?
+    query_attempt = Search::PerformSearchCommand.perform(search_query: query)
+    return head :bad_request unless query_attempt.success?
+
+    matching_search_entries = query_attempt.value!
 
     set_parent_item
-    @search_results = initial_scope
-
-    query.search_terms.each do |term|
-      apply_search_term(term)
-    end
-
-    @results = @search_results.map do |result|
-      SearchEntryCardComponent.new(search_entry: result, item_to_add_or_remove_from: @parent_item)
+    @results = matching_search_entries.map do |search_entry|
+      SearchEntryCardComponent.new(search_entry: search_entry, item_to_add_or_remove_from: @parent_item)
     end
 
     respond_to do |format|
@@ -25,12 +21,6 @@ class SearchEntriesController < ApplicationController
   end
 
   private
-
-  def apply_search_term(term)
-    @search_results = @search_results
-                      .where("searchable_name like '%#{term}%'")
-                      .or(@search_results.where("searchable_text like '%#{term}%'"))
-  end
 
   def set_parent_item
     @parent_item ||= parent_item_class.find(params[:parent_item_id])
@@ -45,10 +35,6 @@ class SearchEntriesController < ApplicationController
     klass
   end
 
-  def search_query
-    params.require(:query) if params[:query].present?
-  end
-
   def initial_scope
     if food_only?
       SearchEntry.where(searchable_type: 'Food')
@@ -59,6 +45,18 @@ class SearchEntriesController < ApplicationController
 
   def food_only?
     params[:food_only] == 'true'
+  end
+
+  def model_to_search
+    params[:target_model].classify.constantize
+  end
+
+  def search_query
+    params.require(:query) if params[:query].present?
+  end
+
+  def query
+    SearchQuery.new(search_query)
   end
 
 end

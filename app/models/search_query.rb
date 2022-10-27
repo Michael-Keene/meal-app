@@ -16,6 +16,7 @@ class SearchQuery
     raise :model_already_set if @model_to_search
 
     @model_to_search = model
+    self
   end
 
   def search_terms

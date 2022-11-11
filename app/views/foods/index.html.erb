@@ -7,8 +7,11 @@
     <h1 class="font-bold text-4xl">Foods</h1>
     <%= link_to 'New food', new_food_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
-
-  <div id="foods" class="min-w-full">
-    <%= render @foods %>
-  </div>
+    <%= turbo_frame_tag "foods_filter" do %>
+    <%= form_with url: foods_filter_url do |form| %>
+      <%= form.text_field :search %>
+      <%= form.button("Search") %>
+    <% end %>
+      <%= render "foods", foods: @foods %>
+    <% end %>
 </div>

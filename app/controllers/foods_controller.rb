@@ -8,6 +8,24 @@ class FoodsController < ApplicationController
     @foods = Food.all.order('created_at desc')
   end
 
+  def filter
+    query = SearchQuery.new(params[:search])
+    search = Search::PerformSearchCommand.perform(search_query: query)
+    @foods = if search.success?
+              Food.where(id: search.value!.select(:searchable_id))
+            else
+              Food.all.order('created_at desc')
+            end
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(
+                 "foods", partial: "foods/foods", locals: {foods: @foods }
+               )
+      end
+    end
+  end
+
   # GET /foods/1 or /foods/1.json
   def show; end
 

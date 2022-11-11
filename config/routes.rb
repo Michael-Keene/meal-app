@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     concerns :searchable
   end
 
+  post "foods/filter", to: 'foods#filter', as: "foods_filter"
   namespace :meals do
     concerns :searchable
   end

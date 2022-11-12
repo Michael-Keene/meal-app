@@ -10,6 +10,7 @@ class FoodsController < ApplicationController
 
   def filter
     query = SearchQuery.new(params[:search])
+    query.search_only_in_model(Food)
     search = Search::PerformSearchCommand.perform(search_query: query)
     @foods = if search.success?
               Food.where(id: search.value!.select(:searchable_id))

@@ -5,7 +5,8 @@ module Search
     def perform
       return Success(:preexisting_entry) if has_pre_existing_entry?
 
-      if entry.update(searchable_name: searchable_object.name, searchable_text: searchable_object.try(:recipe))
+      entry.assign_attributes(searchable_name: searchable_object.name, searchable_text: searchable_object.try(:recipe))
+      if entry.save!
         Success(entry)
       else
         Failure(entry)
@@ -21,7 +22,7 @@ module Search
     end
 
     def entry
-      searchable_object.build_search_entry
+      @entry ||= searchable_object.build_search_entry
     end
 
     def has_pre_existing_entry?

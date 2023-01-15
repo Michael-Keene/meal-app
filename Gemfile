@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.6'
+ruby '3.2.0'
 
 gem 'devise'
 gem "dry-monads"
@@ -13,7 +13,8 @@ gem 'rails', '~> 7.0.0'
 gem 'sprockets-rails'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+# gem 'sqlite3', '~> 1.4'
+gem 'mysql2'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'pry'
@@ -35,7 +36,7 @@ gem 'tailwindcss-rails'
 gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 4.0"
+gem "redis", "~> 4.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -55,7 +56,8 @@ gem 'bootsnap', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 gem 'scenic'
-gem 'scenic_sqlite_adapter'
+# gem 'scenic_sqlite_adapter'
+gem 'scenic-mysql_adapter'
 
 gem 'view_component'
 
@@ -73,6 +75,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem 'capistrano'
+  gem 'capistrano-rails'
 end
 
 group :test do

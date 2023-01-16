@@ -33,7 +33,7 @@ services:
       - .:/app
       - bundle:/bundle
     ports:
-      - "80:3000"
+      - "3000:3000"
     depends_on:
       - db
       - redis
@@ -44,7 +44,19 @@ services:
       DB_USER: ${MYSQL_USER}
       DB_PASSWORD: ${MYSQL_PASSWORD}
       DB_HOST: db
+  caddy:
+    image: caddy:latest
+    restart: unless-stopped
+    command: caddy reverse-proxy --to web:3000
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - caddy:/data
+    depends_on:
+      - web
 volumes:
   db:
   bundle:
   redis:
+  caddy:

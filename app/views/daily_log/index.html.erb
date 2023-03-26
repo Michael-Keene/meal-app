@@ -1,3 +1,21 @@
+<%
+  edibles = [@current_user, @meal_totals, @food_totals].map do |e|
+    UserTargetsPresenter.new(e)
+  end
+
+  turbo_stream_to_subscribe_to = :todays_totals
+
+  button_proc = ->(url) { link_to 'Edit', url, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium"}
+
+  table = TableComponent.new(turbo_stream_rows_from: turbo_stream_to_subscribe_to)
+  table.add_column(label: "", value_from_item: :name)
+  table.add_column(label: "Fat", value_from_item: :fat)
+  table.add_column(label: "Carbs", value_from_item: :carbs)
+  table.add_column(label: "Fibre", value_from_item: :fibre)
+  table.add_column(label: "Protein", value_from_item: :protein)
+  table.add_column(label: "Calories", value_from_item: :calories)
+  table.add_column(label: "", value_from_item: ->(e) { button_proc.call(e.edit_path) if e.directly_editable? })
+%>
 <div class="w-full">
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
@@ -7,6 +25,7 @@
     <h1 class="font-bold text-4xl">Daily Log</h1>
   </div>
   <div class="mx-auto">
+    <%= render table.with_items(edibles) %>
     <%=
       render partial: "edibles/table",
              locals: {

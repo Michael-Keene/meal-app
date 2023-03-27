@@ -14,11 +14,13 @@ class TableComponent < ApplicationComponent
   end
 
   def template
-    table do
-      tr { header_row }
+    table(**@html_options[:table]) do
+      thead(**@html_options[:thead]) {
+        tr { header_row }
+      }
       turbo_stream_rows_tag if @turbo_stream_rows_from
       @items.each do |item|
-        tr(**row_id(item)) { item_row(item) }
+        tr(**row_id(item), **@html_options[:tr]) { item_row(item) }
       end
     end
   end
@@ -53,7 +55,7 @@ class TableComponent < ApplicationComponent
 
   def header_row
     @columns.each do |c|
-      th { c.label }
+      th(**@html_options[:column_header]) { c.label }
     end
   end
 
@@ -68,7 +70,8 @@ class TableComponent < ApplicationComponent
       table: {class: "table-auto w-full divide-y divide-gray-200"},
       thead: {class: "bg-gray-50"},
       column_header: {scope: "col", class: "text-left text-xs font-medium text-gray-500 uppercase"},
-      tbody: {class: "bg-white divide-y divide-gray-200"}
+      tbody: {class: "bg-white divide-y divide-gray-200"},
+      tr: {style: "height: 3.5rem;"}
     }.freeze
   end
 

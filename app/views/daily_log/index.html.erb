@@ -3,18 +3,16 @@
     UserTargetsPresenter.new(e)
   end
 
-  turbo_stream_to_subscribe_to = :todays_totals
-
   button_proc = ->(url) { link_to 'Edit', url, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium"}
 
-  table = TableComponent.new(turbo_stream_rows_from: turbo_stream_to_subscribe_to)
-  table.add_column(label: "", value_from_item: :name)
-  table.add_column(label: "Fat", value_from_item: :fat)
-  table.add_column(label: "Carbs", value_from_item: :carbs)
-  table.add_column(label: "Fibre", value_from_item: :fibre)
-  table.add_column(label: "Protein", value_from_item: :protein)
-  table.add_column(label: "Calories", value_from_item: :calories)
-  table.add_column(label: "", value_from_item: ->(e) { button_proc.call(e.edit_path) if e.directly_editable? })
+  totals_table = TableComponent.new(turbo_stream_rows_from: :todays_totals)
+  totals_table.add_column(label: "", value_from_item: :name)
+  totals_table.add_column(label: "Fat", value_from_item: :fat)
+  totals_table.add_column(label: "Carbs", value_from_item: :carbs)
+  totals_table.add_column(label: "Fibre", value_from_item: :fibre)
+  totals_table.add_column(label: "Protein", value_from_item: :protein)
+  totals_table.add_column(label: "Calories", value_from_item: :calories)
+  totals_table.add_column(label: "", value_from_item: ->(e) { button_proc.call(e.edit_path) if e.directly_editable? })
 %>
 <div class="w-full">
   <% if notice.present? %>
@@ -25,38 +23,35 @@
     <h1 class="font-bold text-4xl">Daily Log</h1>
   </div>
   <div class="mx-auto">
-    <%= render table.with_items(edibles) %>
-    <%=
-      render partial: "edibles/table",
-             locals: {
-               edibles: [@current_user, @meal_totals, @food_totals],
-               no_quantity: true,
-               presenter: UserTargetsPresenter,
-               turbo_stream_to_subscribe_to: :todays_totals
-                     }
-    %>
+    <%= render totals_table.with_items(edibles) %>
   </div>
 
   <%= render "search_entries/search_bar", parent_item: @current_user %>
 
   <div class="mx-auto">
     <%=
-      render partial: "edibles/table",
-             locals: {
-               edibles: @todays_food,
-               turbo_stream_to_subscribe_to: :todays_food
-                     }
+    food_table = TableComponent.new(turbo_stream_rows_from: :todays_food)
+    food_table.add_column(label: "Food", value_from_item: :name)
+    food_table.add_column(label: "Grams", value_from_item: :grams)
+    food_table.add_column(label: "Fat", value_from_item: :fat)
+    food_table.add_column(label: "Carbs", value_from_item: :carbs)
+    food_table.add_column(label: "Fibre", value_from_item: :fibre)
+    food_table.add_column(label: "Protein", value_from_item: :protein)
+    food_table.add_column(label: "Calories", value_from_item: :calories)
+    render food_table.with_items(@todays_food.map { present(_1) })
     %>
   </div>
   <div class="mx-auto">
     <%=
-      render partial: "edibles/table",
-             locals: {
-               edibles: @todays_meals,
-               edibles_name: "Meal",
-               no_quantity: true,
-               turbo_stream_to_subscribe_to: :todays_meals
-                     }
+    meal_table = TableComponent.new(turbo_stream_rows_from: :todays_food)
+    meal_table.add_column(label: "Meal", value_from_item: :name)
+    meal_table.add_column(label: "", value_from_item: ->(_){""})
+    meal_table.add_column(label: "Fat", value_from_item: :fat)
+    meal_table.add_column(label: "Carbs", value_from_item: :carbs)
+    meal_table.add_column(label: "Fibre", value_from_item: :fibre)
+    meal_table.add_column(label: "Protein", value_from_item: :protein)
+    meal_table.add_column(label: "Calories", value_from_item: :calories)
+    render meal_table.with_items(@todays_meals.map { present(_1) })
     %>
   </div
 </div>

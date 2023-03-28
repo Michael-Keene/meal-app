@@ -18,10 +18,12 @@ class TableComponent < ApplicationComponent
       thead(**@html_options[:thead]) {
         tr { header_row }
       }
-      turbo_stream_rows_tag if @turbo_stream_rows_from
-      @items.each do |item|
-        tr(**row_id(item), **@html_options[:tr]) { item_row(item) }
-      end
+      tbody(**@html_options[:tbody]) {
+        turbo_stream_rows_tag if @turbo_stream_rows_from
+        @items.each do |item|
+          tr(**row_id(item), **@html_options[:tr]) { item_row(item) }
+        end
+      }
     end
   end
 

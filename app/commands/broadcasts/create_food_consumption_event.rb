@@ -5,8 +5,8 @@ module Broadcasts
     def perform
       food_consumption_event
         .broadcast_append_to(
-          :todays_food,
-          target: :todays_food_edible_rows,
+          :todays_food_edible_items,
+          target: :rows,
           partial: 'edibles/row',
           locals: { edible: food_consumption_event }
         )

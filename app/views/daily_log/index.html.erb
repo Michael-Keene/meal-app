@@ -5,7 +5,7 @@
 
   button_proc = ->(url) { link_to 'Edit', url, class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium"}
 
-  totals_table = TableComponent.new(turbo_stream_rows_from: :todays_totals)
+  totals_table = TableComponent.new(turbo_stream: :todays_totals)
   totals_table.add_column(label: "", value_from_item: :name)
   totals_table.add_column(label: "Fat", value_from_item: :fat)
   totals_table.add_column(label: "Carbs", value_from_item: :carbs)
@@ -30,7 +30,7 @@
 
   <div class="mx-auto">
     <%=
-    food_table = TableComponent.new(turbo_stream_rows_from: :todays_food)
+    food_table = TableComponent.new(turbo_stream: :todays_food_edible_items)
     food_table.add_column(label: "Food", value_from_item: :name)
     food_table.add_column(label: "Grams", value_from_item: :grams)
     food_table.add_column(label: "Fat", value_from_item: :fat)
@@ -43,7 +43,7 @@
   </div>
   <div class="mx-auto">
     <%=
-    meal_table = TableComponent.new(turbo_stream_rows_from: :todays_food)
+    meal_table = TableComponent.new(turbo_stream: :todays_meals_edible_items)
     meal_table.add_column(label: "Meal", value_from_item: :name)
     meal_table.add_column(label: "", value_from_item: ->(_){""})
     meal_table.add_column(label: "Fat", value_from_item: :fat)

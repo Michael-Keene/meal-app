@@ -24,6 +24,7 @@ class FoodConsumptionEventsController < ApplicationController
     respond_to do |format|
       if @food_consumption_event.save
         broadcast.perform(food_consumption_event: @food_consumption_event)
+        format.turbo_stream { head :created }
         format.html do
           redirect_to food_consumption_event_url(@food_consumption_event),
                       notice: 'Food consumption event was successfully created.'

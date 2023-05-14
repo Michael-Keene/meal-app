@@ -22,7 +22,7 @@ gem 'pry-doc'
 gem 'puma', '~> 5.0'
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem 'importmap-rails'
-gem 'phlex-rails', '~> 0.9.0'
+gem 'phlex-rails', '~> 1'
 gem 'phlex'
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem 'turbo-rails'
